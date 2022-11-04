@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "3da39d70-2f30-463c-bdb2-3832fa1190f5",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 256,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "Owlet_Monster_Death_8": {
+      "ver": "1.0.6",
+      "uuid": "9029840c-b50a-4150-99fd-15e1c470fd1f",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "3da39d70-2f30-463c-bdb2-3832fa1190f5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -0.5,
+      "trimX": 2,
+      "trimY": 1,
+      "width": 253,
+      "height": 31,
+      "rawWidth": 256,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

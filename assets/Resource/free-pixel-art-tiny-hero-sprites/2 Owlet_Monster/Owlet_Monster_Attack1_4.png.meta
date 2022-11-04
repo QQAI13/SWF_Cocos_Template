@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "bb503387-5424-4279-8eb4-548f271d4460",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 128,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "Owlet_Monster_Attack1_4": {
+      "ver": "1.0.6",
+      "uuid": "fc88d280-d9fe-4979-8ed8-ae9bc82a31c7",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "bb503387-5424-4279-8eb4-548f271d4460",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1.5,
+      "offsetY": -2.5,
+      "trimX": 3,
+      "trimY": 5,
+      "width": 119,
+      "height": 27,
+      "rawWidth": 128,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
