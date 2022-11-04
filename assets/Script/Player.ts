@@ -29,10 +29,10 @@ export default class Player extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
 
-    // onDestroy () {
-    //     cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-    //     cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-    // }
+    onDestroy () {
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+    }
 
     start () {
         cc.director.getCollisionManager().enabled = true;
@@ -41,7 +41,6 @@ export default class Player extends cc.Component {
     update(dt){
         this.node.x += this.playerSpeed * this.movedir * dt;
         this.node.scaleX = this.scaledir;
-        // cc.log(this.onGround);
     }
 
     onKeyDown(event){
@@ -88,14 +87,15 @@ export default class Player extends cc.Component {
     playerjump() {
         cc.log('onGround : ' + this.onGround);
         if (this.onGround) {
-            this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1000);
+            this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
             this.onGround = false;
         }
     }
 
     onBeginContact(contact , self , other){
-        cc.log(other.node.name);
-        if(other.node.name == "Background"){
+        // cc.log(contact.getWorldManifold().normal.y);
+        // getWorldManifold is to ensure contact's direction
+        if(other.node.name == "Background" && contact.getWorldManifold().normal.y <= -0.99){
             cc.log('onGround : ' + this.onGround);
             this.onGround = true;
         }
