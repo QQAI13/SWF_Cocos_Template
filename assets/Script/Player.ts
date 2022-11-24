@@ -108,8 +108,8 @@ export default class Player extends cc.Component {
     logout(event , customEventData){
         firebase.auth().signOut().then(function() {
             cc.log("User log out success!");
-            cc.director.loadScene('Main');
-            cc.log("Go to Main map!")
+            cc.director.loadScene('Menu');
+            cc.log("Go back to Menu!")
         }).catch(function(error) {
             cc.log("User log out failed!");
         })
