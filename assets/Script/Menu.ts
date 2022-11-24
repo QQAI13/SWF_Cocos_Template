@@ -5,6 +5,8 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import userinfor = require("./User");
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -16,11 +18,11 @@ export default class Menu extends cc.Component {
     @property
     text: string = 'hello';
 
-    @property
-    Email: cc.Node
+    @property(cc.Node)
+    Email: cc.Node = null
 
-    @property
-    Password: cc.Node
+    @property(cc.Node)
+    Password: cc.Node = null
 
     public txtEmail : string = "";
     public txtPassword : string = "";
@@ -41,7 +43,17 @@ export default class Menu extends cc.Component {
             if(user){
                 let _user = firebase.auth().currentUser;
                 cc.log("Login Success!")
-                var user_ref = firebase.database.ref('username').child(_user.uid);
+                var user_ref = firebase.database().ref('username').child(_user.uid);
+                user_ref.once('value').then(function (snapshot) {
+                    cc.log('Get data');
+                    //cc.log(snapshot);
+                    var childData = snapshot.val();
+                    cc.log(childData);       
+                    userinfor.username = childData.username;
+                }).then(function () {
+                    cc.director.loadScene('Main');
+                    cc.log('Go to Main map!')
+                });
             }
         }).catch(function(error){
             cc.log("Login Error!")
@@ -53,12 +65,21 @@ export default class Menu extends cc.Component {
         this.txtPassword = this.Password.getComponent(cc.EditBox).string;
         // You have to assign your email and password value to another variable
         var _email = this.txtEmail;
-        var _password = this.Password;
+        var _password = this.txtPassword;
         firebase.auth().createUserWithEmailAndPassword(_email , _password).then(function(result){
+            let str = _email.split('@');
+            let username = str[0];
             var data = {
-                Email : _email
+                username : username
             }
-        })
+            var ref = firebase.database().ref('username').child(result.user.uid);
+            ref.set(data);
+            cc.log('push ' + username);
+            cc.director.loadScene('Main');
+            cc.log("Go to Main map!")
+        }).catch(function (error) {
+            cc.log('create error');
+        });
 
     }
 

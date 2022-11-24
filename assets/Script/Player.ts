@@ -5,13 +5,15 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import userinfor = require("./User");
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class Player extends cc.Component {
 
     @property(cc.Node)
-    label: cc.Label = null;
+    Username : cc.Node = null;
 
     private onGround : Boolean = true;
     private movedir : number = 0; // right for 1 and left for -1 , idle is 0
@@ -36,6 +38,8 @@ export default class Player extends cc.Component {
 
     start () {
         cc.director.getCollisionManager().enabled = true;
+        this.Username.getComponent(cc.Label).string = userinfor.username;
+        cc.log(userinfor.username);
     }
 
     update(dt){
@@ -85,7 +89,7 @@ export default class Player extends cc.Component {
     }
 
     playerjump() {
-        cc.log('onGround : ' + this.onGround);
+        // cc.log('onGround : ' + this.onGround);
         if (this.onGround) {
             this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 600);
             this.onGround = false;
@@ -96,8 +100,19 @@ export default class Player extends cc.Component {
         // cc.log(contact.getWorldManifold().normal.y);
         // getWorldManifold is to ensure contact's direction
         if(other.node.name == "Background" && contact.getWorldManifold().normal.y <= -0.99){
-            cc.log('onGround : ' + this.onGround);
+            // cc.log('onGround : ' + this.onGround);
             this.onGround = true;
         }
+    }
+
+    logout(event , customEventData){
+        firebase.auth().signOut().then(function() {
+            cc.log("User log out success!");
+            cc.director.loadScene('Main');
+            cc.log("Go to Main map!")
+        }).catch(function(error) {
+            cc.log("User log out failed!");
+        })
+
     }
 }
