@@ -72,6 +72,7 @@ export default class Menu extends cc.Component {
             var data = {
                 username : username
             }
+            userinfor.username = username;
             var ref = firebase.database().ref('username').child(result.user.uid);
             ref.set(data);
             cc.log('push ' + username);
