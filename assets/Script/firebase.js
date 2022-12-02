@@ -11,14 +11,15 @@
 //# sourceMappingURL=firebase-database.js.map
 
 const config = {
-  apiKey: ,
-  authDomain: ,
-  databaseURL: ,
-  projectId: ,
-  storageBucket: ,
-  messagingSenderId: ,
-  appId: ,
-  measurementId: 
+  apiKey: "AIzaSyDQ-pve3b9aTBsnbPAGmg-jJeSCQHCLBOo",
+  authDomain: "swf-cocos-template.firebaseapp.com",
+  databaseURL: "https://swf-cocos-template-default-rtdb.firebaseio.com",
+  projectId: "swf-cocos-template",
+  storageBucket: "swf-cocos-template.appspot.com",
+  messagingSenderId: "448658009157",
+  appId: "1:448658009157:web:a94df553966e493f4c472c",
+  measurementId: "G-2EM2JNV77X"
 };
+
 
 firebase.initializeApp(config);
